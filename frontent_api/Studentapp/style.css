@@ -1,0 +1,78 @@
+
+/* Body Styling */
+body {
+    background: linear-gradient(135deg, #dbeafe, #eef2ff);
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    padding-top: 40px;
+}
+
+/* Main Container */
+.container {
+    background-color: white;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.12);
+    max-width: 1100px;
+}
+
+/* Heading */
+h1 {
+    text-align: center;
+    color: #1e3a8a;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Table */
+.table {
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Table Header */
+.table thead th {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 16px;
+    font-size: 15px;
+    border-color: #ffffff;
+}
+
+/* Table Data */
+.table tbody td,
+.table tbody th {
+    padding: 14px;
+    color: #333;
+}
+
+/* Alternate Rows */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #eff6ff;
+}
+
+/* Hover Effect */
+.table tbody tr:hover {
+    background-color: #bfdbfe;
+    transition: 0.3s;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    .table {
+        min-width: 650px;
+    }
+}

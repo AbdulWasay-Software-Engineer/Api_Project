@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Student Registration</title>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 20px;
+        }
+
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+        }
+
+
+        .form-card {
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+
+        .form-header h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+
+        .form-header p {
+            color: #888;
+            font-size: 14px;
+        }
+
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #444;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+
+        .form-group input {
+            width: 100%;
+            padding: 13px 15px;
+            border: 1px solid #ddd;
+            border-radius: 9px;
+            outline: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+
+        .form-group input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+        }
+
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 9px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 15px rgba(102, 126, 234, 0.3);
+        }
+
+
+        @media(max-width: 500px) {
+            .form-card {
+                padding: 25px 20px;
+            }
+
+
+            .form-header h1 {
+                font-size: 24px;
+            }
+        }
+
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <div class="container">
+
+
+        <div class="form-card">
+
+
+            <div class="form-header">
+                <h1>Student Registration</h1>
+                <p>Enter student details to register</p>
+            </div>
+
+
+            <form id="stdAdd">
+
+
+                <div class="form-group">
+                    <label for="stdname">Student Name</label>
+                    <input type="text" id="stdname"
+                        placeholder="Enter student name" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="stdage">Student Age</label>
+                    <input type="number" id="stdage"
+                        placeholder="Enter student age" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="stdcontact">Student Contact</label>
+                    <input type="text" id="stdcontact"
+                        placeholder="Enter contact number" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="stdcourse">Student Course</label>
+                    <input type="text" id="stdcourse"
+                        placeholder="Enter course name" required>
+                </div>
+
+
+                <button type="submit" onsubmit="addstd()"
+                    class="submit-btn">
+                    Add Student
+                </button>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+    <script>
+       function addstd(){
+
+
+            let student = {
+                studentId: 0,
+                studentName: document.getElementById("stdname").value,
+                studentAge: Number(document.getElementById("stdage").value),
+                studentContact: document.getElementById("stdcontact").value,
+                studentCourse: document.getElementById("stdcourse").value
+            }
+
+
+            fetch("https://localhost:7260/api/Student",{
+                method: "Post",
+
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+
+                body: JSON.stringify(student)
+            })
+            .then(response=>{
+                if (!response.ok) {
+                    throw new Error("Student Could Not Added");
+                     return response.json();
+                }
+            })
+            .then(data=>{
+                console.log("Api Succes", data);
+
+
+                alert("Student Added Succesfully")
+            })
+            .then(err=>{
+                console.log(err);
+            })
+        }
+    </script>
+
+
+</body>
+</html>
